@@ -3,6 +3,7 @@
  * @description Seeder for Role-Based Access Control (RBAC) — resources and roles.
  */
 
+import slugify from 'slugify';
 import { Resources } from '@/enums/rbac.enum.js';
 import {
     findOneAndUpdateResource,
@@ -72,9 +73,10 @@ class RBACSeeder extends Seeder {
 
         await Promise.all(
             resources.map(async (resource) => {
+                const slug = slugify(resource, { lower: true, locale: 'vi' });
                 const doc = await findOneAndUpdateResource({
                     query: { resource_name: resource },
-                    update: { resource_name: resource },
+                    update: { resource_name: resource, resource_slug: slug },
                     options: { upsert: true, new: true }
                 });
                 this.resourceIdMap.set(resource, doc._id);
