@@ -4,10 +4,9 @@ import {
     findOneAndUpdateShop,
     findShopById
 } from '@/models/repository/shop/index.js';
-import shopModel from '@/models/shop.model.js';
 import { BadRequestErrorResponse, NotFoundErrorResponse } from '@/response/error.response.js';
 
-export default new (class ShopService {
+class ShopService {
     /* ------------------------------------------------------ */
     /*                     Get all shops                      */
     /* ------------------------------------------------------ */
@@ -93,4 +92,7 @@ export default new (class ShopService {
 
         return updatedShop;
     }
-})();
+}
+
+const shopService = new ShopService();
+export default shopService;

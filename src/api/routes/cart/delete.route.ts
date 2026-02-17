@@ -13,6 +13,7 @@ const deleteRouterValidated = Router();
 /* ---------------------------------------------------------- */
 deleteRouter.use(authenticate, deleteRouterValidated);
 
+// DELETE: /product/:skuId: - Delete product from cart
 deleteRouterValidated.delete(
     '/product/:skuId',
     generateValidateWithParamsId('skuId'),

@@ -17,8 +17,13 @@ const postRouteValidated = Router();
 postRoute.use(postRouteValidated);
 postRouteValidated.use(authenticate);
 
+// POST: /create: - Create order
 postRouteValidated.post('/create', validateCreateOrder, catchError(orderController.createOrder));
+
+// POST: /create-vnpay: - Create VNPay order
 postRouteValidated.post('/create-vnpay', catchError(orderController.createOrderWithVNPay));
+
+// POST: /create-vnpay-payment: - Create VNPay payment
 postRouteValidated.post('/create-vnpay-payment', catchError(orderController.createOrderWithVNPayPayment));
 
 export default postRoute; 

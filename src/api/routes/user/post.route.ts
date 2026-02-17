@@ -8,6 +8,7 @@ import { Router } from 'express';
 
 const postRoute = Router();
 
+// POST: /upload-avatar: - Upload user avatar
 postRoute.post(
     '/upload-avatar',
     authenticate,

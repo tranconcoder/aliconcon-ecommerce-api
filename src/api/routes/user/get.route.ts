@@ -7,6 +7,7 @@ import { Router } from 'express';
 const getRoute = Router();
 const getRouteValidated = Router();
 
+// GET: /shop/:shopId: - Get shop info
 getRoute.get('/shop/:shopId', validateParamsId('shopId'), catchError(userController.getShop));
 
 /* ---------------------------------------------------------- */
@@ -15,6 +16,7 @@ getRoute.get('/shop/:shopId', validateParamsId('shopId'), catchError(userControl
 getRoute.use(getRouteValidated);
 getRouteValidated.use(authenticate);
 
+// GET: /profile: - Get user profile
 getRouteValidated.get('/profile', catchError(userController.getProfile));
 
 export default getRoute;

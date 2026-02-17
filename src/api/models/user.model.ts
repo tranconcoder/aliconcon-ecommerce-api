@@ -22,7 +22,8 @@ const userSchema = new Schema<model.auth.UserSchema>(
 
         /* ------------------------ Metadata ------------------------ */
         user_role: { type: ObjectId, required, ref: ROLE_MODEL_NAME },
-        user_status: { type: String, enum: UserStatus, default: UserStatus.ACTIVE }
+        user_status: { type: String, enum: UserStatus, default: UserStatus.ACTIVE },
+        isTestAccount: { type: Boolean, default: false }
     },
     {
         collection: USER_COLLECTION_NAME,

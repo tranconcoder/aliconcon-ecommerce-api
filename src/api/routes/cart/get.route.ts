@@ -11,6 +11,7 @@ const router = Router();
 /* ---------------------------------------------------------- */
 router.use(authenticate);
 
+// GET: /: - Get cart
 router.get('/', catchError(CartController.getCart));
 
 export default router;

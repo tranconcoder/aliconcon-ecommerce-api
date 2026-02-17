@@ -23,7 +23,7 @@ export const updateProfileSchema = z.object({
         )
 });
 export type UpdateProfileSchema = z.infer<typeof updateProfileSchema>;
-export const validateUpdateprofile = generateValidateWithBody(updateProfileSchema);
+export const validateUpdateProfile = generateValidateWithBody(updateProfileSchema);
 
 /* ---------------------------------------------------------- */
 /*                   Update profile by admin                  */

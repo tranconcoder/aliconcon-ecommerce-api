@@ -20,7 +20,7 @@ const patchRouteValidate = Router();
 /* ---------------------------------------------------------- */
 patchRoute.use(authenticate, patchRouteValidate);
 
-/* ----------------------- Update SPU ----------------------- */
+// PUT: /update/:spuId: - Update SPU
 patchRouteValidate.put(
     '/update/:spuId',
     authorization('updateOwn', Resources.PRODUCT),
@@ -57,7 +57,7 @@ patchRouteValidate.put(
     cleanUpMediaOnError
 );
 
-/* ----------------------- Publish SPU ---------------------- */
+// PATCH: /publish/:spuId: - Publish SPU
 patchRouteValidate.patch(
     '/publish/:spuId',
     authorization('updateOwn', Resources.PRODUCT),
@@ -65,7 +65,7 @@ patchRouteValidate.patch(
     catchError(spuController.publishSPU)
 );
 
-/* ------------------------ Draft SPU ----------------------- */
+// PATCH: /draft/:spuId: - Draft SPU
 patchRouteValidate.patch(
     '/draft/:spuId',
     authorization('updateOwn', Resources.PRODUCT),

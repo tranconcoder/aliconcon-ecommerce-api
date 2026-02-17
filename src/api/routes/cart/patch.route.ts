@@ -13,18 +13,21 @@ const patchRouterValidated = Router();
 /* ---------------------------------------------------------- */
 patchRouter.use(authenticate, patchRouterValidated);
 
+// PATCH: /update: - Update cart
 patchRouterValidated.patch(
     '/update',
     validateUpdateCart,
     catchError(cartController.updateCart)
 );
 
+// PATCH: /increase/:skuId: - Increase cart quantity
 patchRouterValidated.patch(
     '/increase/:skuId',
     generateValidateWithParamsId('skuId'),
     catchError(cartController.increaseCartQuantity)
 );
 
+// PATCH: /decrease/:skuId: - Decrease cart quantity
 patchRouterValidated.patch(
     '/decrease/:skuId',
     generateValidateWithParamsId('skuId'),

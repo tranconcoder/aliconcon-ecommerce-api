@@ -11,18 +11,14 @@ const route = Router();
 /* ---------------------------------------------------------- */
 route.use(authenticate);
 
-/* ---------------------------------------------------------- */
-/*                       Update Address                      */
-/* ---------------------------------------------------------- */
+// PATCH: /:addressId: - Update address
 route.patch(
     '/:addressId',
     validateUpdateAddress,
     catchError(AddressController.updateAddress)
 );
 
-/* ---------------------------------------------------------- */
-/*                      Set Default Address                  */
-/* ---------------------------------------------------------- */
+// PATCH: /:addressId/default: - Set default address
 route.patch(
     '/:addressId/default',
     catchError(AddressController.setDefaultAddress)

@@ -43,6 +43,9 @@ export enum EnvKey {
     VNPAY_RETURN_URL = 'VNPAY_RETURN_URL',
     VNPAY_IPN_URL = 'VNPAY_IPN_URL',
     VNPAY_API_URL = 'VNPAY_API_URL',
+
+    // Test Account
+    TEST_ACCOUNT_PASSWORD = 'TEST_ACCOUNT_PASSWORD',
 }
 
 /**

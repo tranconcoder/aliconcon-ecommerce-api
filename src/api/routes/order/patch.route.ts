@@ -19,6 +19,7 @@ const patchRouteValidated = Router();
 patchRoute.use(patchRouteValidated);
 patchRouteValidated.use(authenticate);
 
+// PATCH: /:orderId/cancel: - Cancel order
 patchRouteValidated.patch(
     '/:orderId/cancel',
     validateOrderParams,
@@ -26,6 +27,7 @@ patchRouteValidated.patch(
     catchError(orderController.cancelOrder)
 );
 
+// PATCH: /:orderId/approve: - Approve order
 patchRouteValidated.patch(
     '/:orderId/approve',
     validateOrderParams,
@@ -33,6 +35,7 @@ patchRouteValidated.patch(
     catchError(orderController.approveOrder)
 );
 
+// PATCH: /:orderId/reject: - Reject order
 patchRouteValidated.patch(
     '/:orderId/reject',
     validateOrderParams,
@@ -41,6 +44,7 @@ patchRouteValidated.patch(
     catchError(orderController.rejectOrder)
 );
 
+// PATCH: /:orderId/complete: - Complete order
 patchRouteValidated.patch(
     '/:orderId/complete',
     validateOrderParams,

@@ -16,9 +16,7 @@ import { validateCreateSPU } from '@/validations/zod/spu.zod';
 
 const spuPostRoute = Router();
 
-/* ---------------------------------------------------------- */
-/*                       Create product                       */
-/* ---------------------------------------------------------- */
+// POST: /create: - Create SPU
 spuPostRoute.post(
     '/create',
 
@@ -50,6 +48,7 @@ spuPostRoute.post(
 /*                           Get SPU                          */
 /* ---------------------------------------------------------- */
 
+// GET: /shop/all/own: - Get all own SPU
 spuPostRoute.get(
     '/shop/all/own',
     authorization('readOwn', Resources.PRODUCT),

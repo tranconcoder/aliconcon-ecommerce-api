@@ -1,6 +1,5 @@
 import mediaService from '@/services/media.service.js';
 import type { RequestWithParams } from '@/types/request.js';
-import type { GetMediaFileSchema } from '@/validations/zod/media.zod.js';
 
 export default new (class MediaController {
     getMediaFile: RequestWithParams<{ id: string }> = async (req, res, next) => {

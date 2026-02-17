@@ -1,19 +1,13 @@
 module.exports = {
     apps: [
         {
-            name: 'do-an-1-server',
+            name: 'aliconcon-server',
             script: 'server.ts',
-            interpreter: 'tsx',
-            cwd: '/home/tranv/Workspace/do-an-1-v2/server',
+            interpreter: 'bun', // use bun directly
             instances: 1,
             exec_mode: 'fork',
             env: {
                 NODE_ENV: 'production',
-                PORT: 4000,
-                HOST: '0.0.0.0'
-            },
-            env_development: {
-                NODE_ENV: 'development',
                 PORT: 4000,
                 HOST: '0.0.0.0'
             },
@@ -26,7 +20,7 @@ module.exports = {
             // Auto restart settings
             watch: false,
             ignore_watch: ['node_modules', 'logs', 'public'],
-            max_memory_restart: '1G',
+            max_memory_restart: '800M', // limit memory for restart
 
             // Restart settings
             restart_delay: 4000,
@@ -50,19 +44,5 @@ module.exports = {
             // Time zone
             time: true
         }
-    ],
-
-    deploy: {
-        production: {
-            user: 'tranv',
-            host: 'localhost',
-            ref: 'origin/main',
-            repo: 'https://github.com/tranconcoder/do-an-1',
-            path: '/home/tranv/Workspace/do-an-1-v2',
-            'pre-deploy-local': '',
-            'post-deploy':
-                'cd server && npm install && pm2 reload ecosystem.config.js --env production',
-            'pre-setup': ''
-        }
-    }
+    ]
 };

@@ -10,14 +10,10 @@ const route = Router();
 /* ---------------------------------------------------------- */
 route.use(authenticate);
 
-/* ---------------------------------------------------------- */
-/*                      Get User Addresses                   */
-/* ---------------------------------------------------------- */
+// GET: /: - Get user addresses
 route.get('/', catchError(AddressController.getUserAddresses));
 
-/* ---------------------------------------------------------- */
-/*                     Get Default Address                   */
-/* ---------------------------------------------------------- */
+// GET: /default: - Get default address
 route.get('/default', catchError(AddressController.getDefaultAddress));
 
 export default route; 

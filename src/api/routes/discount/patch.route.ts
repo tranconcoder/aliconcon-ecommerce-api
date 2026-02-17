@@ -17,7 +17,7 @@ const patchRouteValidated = Router();
 /* ---------------------------------------------------------- */
 patchRoute.use(authenticate, patchRouteValidated);
 
-/* ----------------- Toggle publish status ------------------ */
+// PATCH: /:discountId/toggle-publish: - Toggle publish status
 patchRouteValidated.patch(
     '/:discountId/toggle-publish',
     validateToggleDiscountPublishParams,
@@ -25,7 +25,7 @@ patchRouteValidated.patch(
     catchError(DiscountController.toggleDiscountPublish)
 );
 
-/* ---------------- Toggle available status ----------------- */
+// PATCH: /:discountId/toggle-available: - Toggle available status
 patchRouteValidated.patch(
     '/:discountId/toggle-available',
     validateToggleDiscountAvailableParams,

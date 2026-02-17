@@ -10,9 +10,7 @@ const route = Router();
 /* ---------------------------------------------------------- */
 route.use(authenticate);
 
-/* ---------------------------------------------------------- */
-/*                       Delete Address                      */
-/* ---------------------------------------------------------- */
+// DELETE: /:addressId: - Delete address
 route.delete(
     '/:addressId',
     catchError(AddressController.deleteAddress)

@@ -5,7 +5,7 @@ import { authenticate } from "@/middlewares/jwt.middleware.js";
 import catchError from "@/middlewares/catchError.middleware.js";
 
 // Validations
-import { validateUpdateprofile } from "@/validations/zod/user.zod.js";
+import { validateUpdateProfile } from "@/validations/zod/user.zod.js";
 
 // Controller
 import userController from "@/controllers/user.controller.js";
@@ -16,9 +16,10 @@ const patchRouteValidated = Router();
 patchRoute.use(patchRouteValidated);
 patchRouteValidated.use(authenticate);
 
+// PATCH: /profile: - Update user profile
 patchRouteValidated.patch(
     "/profile",
-    validateUpdateprofile,
+    validateUpdateProfile,
     catchError(userController.updateProfile));
 
 export default patchRoute;

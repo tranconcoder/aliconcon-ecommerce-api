@@ -18,6 +18,7 @@ declare global {
 
                     user_role: mongoose.Types.ObjectId;
                     user_status?: UserStatus;
+                    isTestAccount?: boolean;
                 },
                 isModel,
                 isDoc,

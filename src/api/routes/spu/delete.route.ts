@@ -14,6 +14,7 @@ const deleteRouterValidate = Router();
 /* ---------------------------------------------------------- */
 deleteRouter.use(authenticate, deleteRouterValidate);
 
+// DELETE: /:id: - Delete SPU
 deleteRouterValidate.delete(
     '/:id',
     authorization('deleteOwn', Resources.PRODUCT),

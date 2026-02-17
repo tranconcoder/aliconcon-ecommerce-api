@@ -1,5 +1,4 @@
 import locationController from '@/controllers/location.controller.js';
-import validateRequestBody from '@/middlewares/joiValidate.middleware.js';
 import { authenticate } from '@/middlewares/jwt.middleware.js';
 import { validateCreateLocation } from '@/validations/zod/location.zod.js';
 import { Router } from 'express';
@@ -14,7 +13,7 @@ const routerValidated = Router();
 router.use(routerValidated);
 routerValidated.use(authenticate);
 
-/* ------------------ Create new location  ------------------ */
+// POST: /: - Create new location
 router.post(
     '/',
     validateCreateLocation,

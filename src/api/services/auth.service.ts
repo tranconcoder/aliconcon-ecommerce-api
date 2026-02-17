@@ -29,7 +29,7 @@ import { RoleNames } from '@/enums/rbac.enum.js';
 import { UserStatus } from '@/enums/user.enum.js';
 import { deleteKeyToken } from './redis.service.js';
 import { findOneAndUpdateKeyToken } from '@/models/repository/keyToken/index.js';
-import { USER_PUBLIC_FIELDS } from '@/configs/user.config.js';
+import { USER_PUBLIC_FIELDS, TEST_ACCOUNT_PASSWORD } from '@/configs/user.config.js';
 import { roleService } from './rbac.service.js';
 import { changeMediaOwner } from '@/models/repository/media/index.js';
 import { NODE_ENV } from '@/configs/server.config.js';
@@ -482,6 +482,30 @@ export default class AuthService {
         return {
             token: jwtTokenPair,
             user: _.pick(user, USER_PUBLIC_FIELDS)
+        };
+    };
+
+    /* ------------------------------------------------------ */
+    /*                     Get Test Account                   */
+    /* ------------------------------------------------------ */
+    public static getTestAccount = async (role: RoleNames) => {
+        const roleRecord = await getRoleIdByName(role);
+        if (!roleRecord) throw new NotFoundErrorResponse({ message: 'Role not found!' });
+
+        const user = await findOneUser({
+            query: {
+                user_role: roleRecord,
+                isTestAccount: true
+            },
+            select: ['phoneNumber', 'user_fullName', 'user_email'],
+            options: { lean: true }
+        });
+
+        if (!user) throw new NotFoundErrorResponse({ message: 'Test account not found!' });
+
+        return {
+            ..._.pick(user, ['phoneNumber', 'user_fullName', 'user_email']),
+            password: TEST_ACCOUNT_PASSWORD // Default password for test accounts
         };
     };
 }

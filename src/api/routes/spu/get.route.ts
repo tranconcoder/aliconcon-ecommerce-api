@@ -13,7 +13,7 @@ const getRouteValidate = Router();
 /*                          Get all                           */
 /* ---------------------------------------------------------- */
 
-/* --------------------- Popular spu by all -------------------- */
+// GET: /popular: - Get popular SPU
 getRoute.get('/popular', validatePagination, catchError(spuController.getPopularSPUByAll));
 
 /* ---------------------------------------------------------- */
@@ -21,7 +21,7 @@ getRoute.get('/popular', validatePagination, catchError(spuController.getPopular
 /* ---------------------------------------------------------- */
 getRoute.use(authenticate, getRouteValidate);
 
-/* ------------ Get all product by shop (get own) ----------- */
+// GET: /shop/own: - Get own shop SPU
 getRouteValidate.get(
     '/shop/own',
     authorization('readOwn', Resources.PRODUCT),
@@ -29,7 +29,7 @@ getRouteValidate.get(
     catchError(spuController.getAllSPUOwnByShop)
 );
 
-/* ------------------- Get SPU by ID for edit ------------------ */
+// GET: /:spuId: - Get SPU by ID
 getRouteValidate.get(
     '/:spuId',
     authorization('readOwn', Resources.PRODUCT),

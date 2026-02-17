@@ -1,26 +1,17 @@
 import { Router } from 'express';
-
-/* ----------------------- Controller ----------------------- */
-import CheckoutController from '@/controllers/checkout.controller.js';
-
-/* ----------------------- Middleware ----------------------- */
-import catchError from '@/middlewares/catchError.middleware.js';
-import { authenticate } from '@/middlewares/jwt.middleware.js';
-import { validateCheckout } from '@/validations/zod/checkout.zod.js';
+import getRoute from './get.js';
+import postRoute from './post.js';
 
 const checkoutRoute = Router();
-const checkoutRouteValidated = Router();
 
-/* ---------------------------------------------------------- */
-/*                      Validated routes                      */
-/* ---------------------------------------------------------- */
-checkoutRoute.use(checkoutRouteValidated);
-checkoutRouteValidated.use(authenticate);
+/* ------------------------------------------------------ */
+/*                         GET                            */
+/* ------------------------------------------------------ */
+checkoutRoute.use('/', getRoute);
 
-// POST /checkout - Create/Update checkout
-checkoutRouteValidated.post('/', validateCheckout, catchError(CheckoutController.checkout));
+/* ------------------------------------------------------ */
+/*                         POST                           */
+/* ------------------------------------------------------ */
+checkoutRoute.use('/', postRoute);
 
-// GET /checkout - Get user's checkout data
-checkoutRouteValidated.get('/', catchError(CheckoutController.getCheckout));
-
-export default checkoutRoute; 
+export default checkoutRoute;

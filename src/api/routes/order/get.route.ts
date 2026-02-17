@@ -17,10 +17,10 @@ const getRouteValidated = Router();
 getRoute.use(getRouteValidated);
 getRouteValidated.use(authenticate);
 
-// Get order history for authenticated user
+// GET: /history: - Get order history for authenticated user
 getRouteValidated.get('/history', catchError(orderController.getOrderHistory));
 
-// Get orders for shop (shop manager only) - MUST come before /:orderId
+// GET: /shop: - Get orders for shop (shop manager only)
 getRouteValidated.get(
     '/shop',
     validateGetShopOrdersQuery,
@@ -28,7 +28,7 @@ getRouteValidated.get(
     catchError(orderController.getShopOrders)
 );
 
-// Get order detail by ID for authenticated user - MUST come after specific routes
+// GET: /:orderId: - Get order detail by ID for authenticated user
 getRouteValidated.get(
     '/:orderId',
     validateOrderParams,

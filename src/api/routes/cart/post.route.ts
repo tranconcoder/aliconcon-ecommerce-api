@@ -12,6 +12,7 @@ const routerValidated = Router();
 /* ---------------------------------------------------------- */
 router.use(authenticate, routerValidated);
 
+// POST: /add/:skuId/:quantity?: - Add to cart
 routerValidated.post(
     '/add/:skuId/:quantity?',
     validateAddToCart,

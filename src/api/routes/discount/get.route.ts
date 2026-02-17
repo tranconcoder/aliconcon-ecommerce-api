@@ -19,7 +19,7 @@ const discountGetRouteValidated = Router();
 /*                          Get all                           */
 /* ---------------------------------------------------------- */
 
-/* ---------------- Get all discount in shop ---------------- */
+// GET: /shop/all/:shopId: - Get all discount in shop
 discountGetRoute.get(
     '/shop/all/:shopId',
     validatePagination,
@@ -27,6 +27,7 @@ discountGetRoute.get(
     catchError(DiscountController.getAllDiscountCodeInShop as any)
 );
 
+// GET: /product/:discountId: - Get product discount by code
 discountGetRoute.get(
     '/product/:discountId',
     validateGetAllProductDiscountByCodeQuery,
@@ -39,7 +40,7 @@ discountGetRoute.get(
 /* ---------------------------------------------------------- */
 discountGetRoute.use(authenticate, discountGetRouteValidated);
 
-/* ---------------- Get all own shop discount --------------- */
+// GET: /shop/own: - Get all own shop discount
 discountGetRouteValidated.get(
     '/shop/own',
     authorization('readOwn', Resources.DISCOUNT),
@@ -48,7 +49,7 @@ discountGetRouteValidated.get(
     catchError(DiscountController.getAllShopOwnDiscount as any)
 );
 
-/* -------------- Get discount for edit by shop ------------- */
+// GET: /edit/:discountId: - Get discount for edit by shop
 discountGetRouteValidated.get(
     '/edit/:discountId',
     authorization('readOwn', Resources.DISCOUNT),

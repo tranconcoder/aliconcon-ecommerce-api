@@ -72,7 +72,8 @@ class UserSeeder extends Seeder {
             const payload = {
                 ...user,
                 password: hashedPassword,
-                user_role: role._id
+                user_role: role._id,
+                isTestAccount: user.isTestAccount || false
             };
             
             // Remove auxiliary fields not present in the database schema

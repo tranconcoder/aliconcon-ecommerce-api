@@ -3,7 +3,7 @@ import type { RequestHandler } from 'express';
 
 import AuthService from '@/services/auth.service.js';
 import { CreatedResponse, OkResponse } from '@/response/success.response.js';
-import { ForbiddenErrorResponse } from '@/response/error.response.js';
+import { ForbiddenErrorResponse, BadRequestErrorResponse } from '@/response/error.response.js';
 import { CLIENT_URL } from '@/configs/auth.config.js';
 
 export default class AuthController {
@@ -92,5 +92,17 @@ export default class AuthController {
         } catch (error) {
             next(error);
         }
+    };
+    /* ------------------------------------------------------ */
+    /*                     Get Test Account                   */
+    /* ------------------------------------------------------ */
+    public static getTestAccount: RequestHandler = async (req, res, _) => {
+        const { role } = req.query;
+        if (!role) throw new BadRequestErrorResponse({ message: 'Role is required!' });
+
+        new OkResponse({
+            message: 'Get test account success!',
+            metadata: await AuthService.getTestAccount(role as any)
+        }).send(res);
     };
 }
